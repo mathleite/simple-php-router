@@ -1,0 +1,20 @@
+{
+    "name": "root/src",
+    "config": {
+        "platform": {
+            "php": "7.4"
+        }
+    },
+    "license": "GPL-3.0-only",
+    "authors": [
+        {
+            "name": "Matheus Leite",
+            "email": "matheus.leite.san@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "App\\": "app"
+        }
+    }
+}
