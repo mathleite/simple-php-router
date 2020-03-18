@@ -10,7 +10,7 @@ class UserController implements ControllerInterface
 {
     public static function index(): void
     {
-        echo 'abc';
+        echo 'Hi! I am a index function :)';
     }
 
 }
