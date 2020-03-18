@@ -4,10 +4,13 @@
 namespace App\Route;
 
 
+use InvalidArgumentException;
+use ReflectionException;
 use ReflectionMethod;
 
 class Router implements RouterInterface
 {
+    private const NOT_FOUND_CODE = 204;
     private array $routes = [];
 
     public function dispatch(string $uri, array $params = []): void
@@ -18,6 +21,8 @@ class Router implements RouterInterface
 
             $reflectedControllerMethod->invokeArgs(new $uriContent['namespace'], $params);
         }
+
+        throw new InvalidArgumentException("'{$uri}' is an unregistered route", self::NOT_FOUND_CODE);
     }
 
     public function registry(string $uri, string $controller, string $method): void
@@ -32,7 +37,7 @@ class Router implements RouterInterface
     {
         try {
             return new ReflectionMethod($uriContent['namespace'], $uriContent['method']);
-        } catch (\ReflectionException $exception) {
+        } catch (ReflectionException $exception) {
             print $exception->getMessage();
         }
     }
