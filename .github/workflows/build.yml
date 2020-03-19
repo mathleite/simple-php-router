@@ -19,8 +19,9 @@ jobs:
 
       - uses: php-actions/composer@master
 
-      run: |
-        cp .env.example .env
+      - name: Config Dot Env
+        run: |
+          cp .env.example .env
 
       - name: Run Tests
         run: composer tests-exclude-notification
