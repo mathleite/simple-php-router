@@ -1,4 +1,10 @@
-# Simple PHP Router
+<h1 align="center">Simple PHP Router</h1>
+
+<p align="center">
+    <a href="https://github.com/mathleite/simple-php-router">
+        <img src="https://github.com/mathleite/simple-php-router/workflows/CI/badge.svg" alt="Workflow badge">
+    </a>
+</p>
 
 | SETUP  |
 |:------:|
