@@ -11,6 +11,9 @@ require_once 'app/DotEnvLoader/index.php';
 
 class SlackNotificationTest extends TestCase
 {
+    /**
+     * @group notification
+     */
     public static function test_SlackNotification_ShouldNotify(): void
     {
         $notification         = new SlackNotification($notifyText = 'Test Notification', $messageType = MessageTypeEnum::ERROR());
