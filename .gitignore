@@ -1,2 +1,7 @@
+# FOLDERS
 .idea
 vendor
+
+# FILES
+.env
+.phpunit.result.cache
