@@ -23,6 +23,15 @@
     ```docker
     docker exec -it php7 composer install
     ```
+### Receive Slack notifications with Webhooks
+- Configure .env application
+    ```bash
+    cp .env.example .env
+    ```
+- Set  your Slack Api Webhook in .env
+    ```env
+    SLACK_API_WEBHOOK=your_webhook_here
+    ```
 
 ### Create your own routes
 
