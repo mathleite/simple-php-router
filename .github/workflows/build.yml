@@ -24,4 +24,4 @@ jobs:
           cp .env.example .env
 
       - name: Run Tests
-        run: composer tests-exclude-notification
+        run: composer exclude-notification-tests

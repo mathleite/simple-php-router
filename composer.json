@@ -32,6 +32,6 @@
     },
     "scripts": {
         "tests": "./vendor/bin/phpunit tests --color=always --stop-on-failure",
-        "tests-exclude-notification": "./vendor/bin/phpunit tests --color=always --stop-on-failure --exclude-group=notification"
+        "exclude-notification-tests": "./vendor/bin/phpunit tests --color=always --stop-on-failure --exclude-group=notification"
     }
 }
