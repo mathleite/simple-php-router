@@ -11,20 +11,21 @@
 | Nginx  |
 | PHP7.4 |
 | Docker |
+| Postgres |
 
 
 #### Start app
 - Build Docker containers
-    ```docker
+    ```bash
     docker-compose up --build -d
     ```
 
 - Install Composer dependencies
-    ```docker
+    ```bash
     docker exec -it php7 composer install
     ```
 - Create Alias
-    - Enter inside container
+    - Enter inside php7 container
         ```bash
           docker exec -i php7 bash
         ```
@@ -42,7 +43,7 @@
     cp .env.example .env
     ```
 - Set  your Slack Api Webhook in .env
-    ```env
+    ```dotenv
     SLACK_API_WEBHOOK=your_webhook_here
     ```
 
