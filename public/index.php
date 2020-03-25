@@ -1,8 +1,6 @@
 <?php
 
-$rootDirectory = __DIR__ . '/../';
+echo '<pre>';
 
-require_once $rootDirectory . '/vendor/autoload.php';
-
-require_once  $rootDirectory . '/bootstrap/index.php';
+require_once  __DIR__ . '/../bootstrap/index.php';
 

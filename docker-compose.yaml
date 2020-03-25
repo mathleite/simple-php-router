@@ -28,8 +28,11 @@ services:
     database:
         image: postgres
         container_name: database
+        ports:
+            - "5432:5432"
         volumes:
             - ./database/:/docker-entrypoint-initdb.d/
+            - ./database/temp-postgres-data/:/var/lib/pgsql/data/
         environment:
             POSTGRES_PASSWORD: postgres
             POSTGRES_USER: postgres

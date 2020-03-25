@@ -23,6 +23,19 @@
     ```docker
     docker exec -it php7 composer install
     ```
+- Create Alias
+    - Enter inside container
+        ```bash
+          docker exec -i php7 bash
+        ```
+    - Run script
+        ```bash
+          ./scripts/create_linux_alias.sh  
+        ```
+    - Run Migrations
+        ```bash
+          migrate
+        ```
 ### Receive Slack notifications with Webhooks
 - Configure .env application
     ```bash
