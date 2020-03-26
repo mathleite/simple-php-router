@@ -52,7 +52,7 @@ final class SlackStylizedMessageCreator
         ];
     }
 
-    public function getMessageStructure(): array
+    public function getStructuredMessage(): array
     {
         return $this->stylizedMessageStructure;
     }

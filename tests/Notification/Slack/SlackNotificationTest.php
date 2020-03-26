@@ -2,6 +2,8 @@
 
 namespace App\Test\Notification\Slack;
 
+use App\Notification\Client\Guzzle\GuzzleHTTPClient;
+use App\Notification\Client\ResponseAdapterInterface;
 use App\Notification\NotificationTypeEnum;
 use App\Notification\Slack\SlackNotification;
 use PHPUnit\Framework\Assert;
@@ -9,20 +11,26 @@ use PHPUnit\Framework\TestCase;
 
 require_once 'app/DotEnvLoader/index.php';
 
+/**
+ * @group notification
+ */
 class SlackNotificationTest extends TestCase
 {
-    /**
-     * @group notification
-     */
-    public static function test_SlackNotification_ShouldNotify(): void
+    public static function test_SlackNotificationInstance_ShouldAssertResponseAdapterInterfaceResponse(): void
     {
-        $notification         = new SlackNotification($notifyText = 'Test Notification', $messageType = NotificationTypeEnum::ERROR());
+        $notification         = new SlackNotification(
+            new GuzzleHTTPClient(),
+            $notifyText = 'Test Notification',
+            $messageType = NotificationTypeEnum::ERROR()
+        );
         $notificationResponse = $notification->notify();
 
-        $expectedStatusCodeOK = 200;
-        $expectedReasonPhrase = 'OK';
+        $expectedResponse = [
+            'status_code' => 200,
+            'message'     => 'OK',
+        ];
 
-        Assert::assertEquals($expectedStatusCodeOK, $notificationResponse->getStatusCode());
-        Assert::assertEquals($expectedReasonPhrase, $notificationResponse->getReasonPhrase());
+        Assert::assertInstanceOf(ResponseAdapterInterface::class, $notificationResponse);
+        Assert::assertEquals($expectedResponse, $notificationResponse->getResponse());
     }
 }

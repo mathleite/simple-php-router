@@ -4,23 +4,26 @@
 namespace App\Notification\Slack;
 
 
-use App\Notification\AppNotification;
-use GuzzleHttp\Client;
-use Psr\Http\Message\ResponseInterface;
+use App\Notification\AppNotificationInterface;
+use App\Notification\Client\HTTPClientAdapterInterface;
+use App\Notification\Client\ResponseAdapterInterface;
 
-final class SlackNotification implements AppNotification
+final class SlackNotification implements AppNotificationInterface
 {
     private SlackStylizedMessageCreator $message;
+    private HTTPClientAdapterInterface $client;
 
-    public function __construct(string $message, string $messageType)
+    public function __construct(HTTPClientAdapterInterface $client, string $message, string $messageType)
     {
         $this->message = new SlackStylizedMessageCreator($message, $messageType);
+        $this->client  = $client;
     }
 
-    public function notify(): ResponseInterface
+    public function notify(): ResponseAdapterInterface
     {
-        return (new Client())->post(getenv('SLACK_API_WEBHOOK'), [
-            'json' => $this->message->getMessageStructure()
-        ]);
+        return $this->client->post(
+            getenv('SLACK_API_WEBHOOK'),
+            $this->message->getStructuredMessage()
+        );
     }
 }

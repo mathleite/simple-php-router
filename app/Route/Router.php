@@ -4,6 +4,7 @@
 namespace App\Route;
 
 
+use App\Notification\Client\Guzzle\GuzzleHTTPClient;
 use App\Notification\NotificationTypeEnum;
 use App\Notification\StatusCodeEnum;
 use App\Notification\Slack\SlackNotification;
@@ -39,7 +40,11 @@ final class Router implements RouterInterface
         try {
             return new ReflectionMethod($uriContent['namespace'], $uriContent['method']);
         } catch (ReflectionException $exception) {
-            (new SlackNotification($exception->getMessage(), NotificationTypeEnum::ERROR()))->notify();
+            (new SlackNotification(
+                new GuzzleHTTPClient(),
+                $exception->getMessage(),
+                NotificationTypeEnum::ERROR()
+            ))->notify();
         }
     }
 }
