@@ -9,7 +9,7 @@ namespace App\Notification;
  * @package App\Notification
  * @method static string ERROR()
  */
-final class MessageTypeEnum
+final class NotificationTypeEnum
 {
     private const ERROR = 'error';
 

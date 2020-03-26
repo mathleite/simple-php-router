@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Slack;
+namespace App\Notification\Slack;
 
 
 use App\Notification\AppNotification;

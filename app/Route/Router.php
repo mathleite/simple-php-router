@@ -4,9 +4,9 @@
 namespace App\Route;
 
 
-use App\Notification\MessageTypeEnum;
+use App\Notification\NotificationTypeEnum;
 use App\Notification\StatusCodeEnum;
-use App\Slack\SlackNotification;
+use App\Notification\Slack\SlackNotification;
 use InvalidArgumentException;
 use ReflectionException;
 use ReflectionMethod;
@@ -39,7 +39,7 @@ final class Router implements RouterInterface
         try {
             return new ReflectionMethod($uriContent['namespace'], $uriContent['method']);
         } catch (ReflectionException $exception) {
-            (new SlackNotification($exception->getMessage(), MessageTypeEnum::ERROR()))->notify();
+            (new SlackNotification($exception->getMessage(), NotificationTypeEnum::ERROR()))->notify();
         }
     }
 }

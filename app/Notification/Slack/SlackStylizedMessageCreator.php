@@ -1,10 +1,10 @@
 <?php
 
 
-namespace App\Slack;
+namespace App\Notification\Slack;
 
 
-use App\Notification\MessageTypeEnum;
+use App\Notification\NotificationTypeEnum;
 use App\Notification\StatusCodeEnum;
 use InvalidArgumentException;
 
@@ -20,7 +20,7 @@ final class SlackStylizedMessageCreator
     private static function getSlylizedMessageByType(string $message, string $messageType): array
     {
         switch ($messageType) {
-            case MessageTypeEnum::ERROR():
+            case NotificationTypeEnum::ERROR():
                 return self::getErrorMessageStructure($message);
             default:
                 throw new InvalidArgumentException("Invalid message type: '{$messageType}'", StatusCodeEnum::NOT_FOUND());
@@ -38,7 +38,7 @@ final class SlackStylizedMessageCreator
                     'type' => 'section',
                     'text' => [
                         'type' => 'mrkdwn',
-                        'text' => "[{$currentDate}] " . strtoupper(MessageTypeEnum::ERROR()) . ' :this-is-fine-fire:'
+                        'text' => "[{$currentDate}] " . strtoupper(NotificationTypeEnum::ERROR()) . ' :this-is-fine-fire:'
                     ]
                 ],
                 [

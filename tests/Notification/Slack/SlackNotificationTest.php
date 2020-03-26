@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Test\Notification;
+namespace App\Test\Notification\Slack;
 
-use App\Notification\MessageTypeEnum;
-use App\Slack\SlackNotification;
+use App\Notification\NotificationTypeEnum;
+use App\Notification\Slack\SlackNotification;
 use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\TestCase;
 
@@ -16,7 +16,7 @@ class SlackNotificationTest extends TestCase
      */
     public static function test_SlackNotification_ShouldNotify(): void
     {
-        $notification         = new SlackNotification($notifyText = 'Test Notification', $messageType = MessageTypeEnum::ERROR());
+        $notification         = new SlackNotification($notifyText = 'Test Notification', $messageType = NotificationTypeEnum::ERROR());
         $notificationResponse = $notification->notify();
 
         $expectedStatusCodeOK = 200;

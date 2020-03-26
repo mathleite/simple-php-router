@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Test\Slack;
+namespace App\Test\Notification\Slack;
 
 use App\Notification\StatusCodeEnum;
-use App\Slack\SlackStylizedMessageCreator;
+use App\Notification\Slack\SlackStylizedMessageCreator;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 
