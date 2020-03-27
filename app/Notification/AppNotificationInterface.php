@@ -4,12 +4,12 @@
 namespace App\Notification;
 
 
-use App\Notification\Client\HTTPClientAdapterInterface;
-use App\Notification\Client\HTTPResponseInterface;
+use App\Notification\Client\HttpClientAdapterInterface;
+use Psr\Http\Message\ResponseInterface;
 
 interface AppNotificationInterface
 {
-    public function __construct(HTTPClientAdapterInterface $client, string $message, string $messageType);
+    public function __construct(HttpClientAdapterInterface $client, string $message, string $messageType);
 
-    public function notify(): HTTPResponseInterface;
+    public function notify(): ResponseInterface;
 }
