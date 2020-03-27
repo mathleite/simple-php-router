@@ -5,9 +5,8 @@ namespace App\Notification\Client\Guzzle;
 
 
 use App\Notification\Client\HTTPClientAdapterInterface;
-use App\Notification\Client\ResponseAdapterInterface;
+use App\Notification\Client\HTTPResponseInterface;
 use GuzzleHttp\Client;
-use Psr\Http\Message\ResponseInterface;
 
 class GuzzleHTTPClient implements HTTPClientAdapterInterface
 {
@@ -18,15 +17,15 @@ class GuzzleHTTPClient implements HTTPClientAdapterInterface
         $this->client = new Client();
     }
 
-    public function post(string $url, array $params): ResponseAdapterInterface
+    public function post(string $url, array $params): HTTPResponseInterface
     {
-        $clientResponse = $this->client->post(
+        $guzzleResponse = $this->client->post(
             $url,
             [
                 'json' => $params
             ]
         );
 
-        return new GuzzleResponse($clientResponse);
+        return new HTTPResponse($guzzleResponse);
     }
 }

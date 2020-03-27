@@ -6,5 +6,5 @@ namespace App\Notification\Client;
 
 interface HTTPClientAdapterInterface
 {
-    public function post(string $url, array $params): ResponseAdapterInterface;
+    public function post(string $url, array $params): HTTPResponseInterface;
 }

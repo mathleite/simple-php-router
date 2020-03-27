@@ -4,10 +4,10 @@
 namespace App\Notification\Client\Guzzle;
 
 
-use App\Notification\Client\ResponseAdapterInterface;
+use App\Notification\Client\HTTPResponseInterface;
 use Psr\Http\Message\ResponseInterface;
 
-class GuzzleResponse implements ResponseAdapterInterface
+class HTTPResponse implements HTTPResponseInterface
 {
     private ResponseInterface $clientResponse;
 
