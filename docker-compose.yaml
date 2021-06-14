@@ -9,14 +9,14 @@ services:
             - ./nginx/conf.d/:/etc/nginx/conf.d/
             - ./nginx/nginx.conf:/etc/nginx/nginx.conf
         links:
-            - php7
+            - php
         working_dir: /var/www/html
 
-    php7:
+    php:
         build:
           context: .
           dockerfile: Dockerfile
         volumes:
             - .:/var/www/html
-        container_name: php7
+        container_name: php
         working_dir: /var/www/html

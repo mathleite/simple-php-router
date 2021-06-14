@@ -13,16 +13,16 @@ class Router implements RouterInterface
     private const NOT_FOUND_CODE = 204;
     private array $routes = [];
 
-    public function dispatch(string $uri, array $params = []): void
+    public function dispatch(string $requestAction, array $params = []): void
     {
-        if (key_exists($uri, $this->routes)) {
-            $uriContent                = $this->routes[$uri];
-            $reflectedControllerMethod = self::createReflectionMethod($uriContent);
-
-            $reflectedControllerMethod->invokeArgs(new $uriContent['namespace'], $params);
+        if (!key_exists($requestAction, $this->routes)) {
+            throw new InvalidArgumentException("'{$requestAction}' is an unregistered route", self::NOT_FOUND_CODE);
         }
 
-        throw new InvalidArgumentException("'{$uri}' is an unregistered route", self::NOT_FOUND_CODE);
+        $uriContent                = $this->routes[$requestAction];
+        $reflectedControllerMethod = self::createReflectionMethod($uriContent);
+
+        $reflectedControllerMethod->invokeArgs(new $uriContent['namespace'], $params);
     }
 
     public function registry(string $uri, string $controller, string $method): void

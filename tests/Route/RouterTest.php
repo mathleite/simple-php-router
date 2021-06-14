@@ -14,7 +14,7 @@ class RouterTest extends TestCase
         $notFoundCode      = 204;
 
         $route = new Router();
-        $route->registry('/user', \App\User\UserController::class, 'index');
+        $route->registry('/user', \App\Greet\GreetController::class, 'index');
 
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage("'{$unregisteredRoute}' is an unregistered route");
