@@ -9,38 +9,14 @@ services:
             - ./nginx/conf.d/:/etc/nginx/conf.d/
             - ./nginx/nginx.conf:/etc/nginx/nginx.conf
         links:
-            - php7
+            - php
         working_dir: /var/www/html
-        networks:
-            - server_network
 
-    php7:
+    php:
         build:
           context: .
           dockerfile: Dockerfile
         volumes:
             - .:/var/www/html
-        container_name: php7
+        container_name: php
         working_dir: /var/www/html
-        networks:
-            - server_network
-
-    database:
-        image: postgres
-        container_name: database
-        ports:
-            - "5432:5432"
-        volumes:
-            - ./database/:/docker-entrypoint-initdb.d/
-            - ./database/temp-postgres-data/:/var/lib/pgsql/data/
-        environment:
-            POSTGRES_PASSWORD: postgres
-            POSTGRES_USER: postgres
-            POSTGRES_DB: hotel_database
-        networks:
-            - server_network
-
-networks:
-    server_network:
-        driver: bridge
-

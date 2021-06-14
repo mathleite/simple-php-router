@@ -3,15 +3,6 @@
     "config": {
         "platform": {
             "php": "7.4"
-        },
-        "github-protocols": [
-            "https"
-        ]
-    },
-    "repositories": {
-        "packagist.org": {
-            "type": "composer",
-            "url": "https://packagist.org"
         }
     },
     "license": "GPL-3.0-only",
@@ -31,16 +22,10 @@
             "App\\Test\\": "tests"
         }
     },
-    "require": {
-        "vlucas/phpdotenv": "4.1.*",
-        "guzzlehttp/guzzle": "6.5.*",
-        "ext-json": "*",
-        "illuminate/database": "^7.2"
-    },
     "require-dev": {
         "phpunit/phpunit": "8.5.*"
     },
     "scripts": {
-        "tests": "./vendor/bin/phpunit tests --color=always --stop-on-failure",
+        "tests": "./vendor/bin/phpunit tests --color=always --stop-on-failure"
     }
 }

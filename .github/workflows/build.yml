@@ -4,12 +4,10 @@ on:
   push:
     branches:
       - master
-      - feature/*
-      - hotfix/*
 
 jobs:
   build:
-    runs-on: [ubuntu-latest]
+    runs-on: [ ubuntu-latest ]
     steps:
       - uses: actions/checkout@v1
 
@@ -20,10 +18,6 @@ jobs:
           key: ${{ runner.OS }}-build-${{ hashFiles('**/composer.lock') }}
 
       - uses: php-actions/composer@master
-
-      - name: Config Dot Env
-        run: |
-          cp .env.example .env
 
       - name: Run Tests
         run: composer test

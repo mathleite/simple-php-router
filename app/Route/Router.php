@@ -4,26 +4,24 @@
 namespace App\Route;
 
 
-use App\Notification\Client\Guzzle\GuzzleHTTPClient;
-use App\Notification\NotificationTypeEnum;
-use App\Notification\StatusCodeEnum;
-use App\Notification\Slack\SlackNotification;
 use InvalidArgumentException;
 use ReflectionException;
 use ReflectionMethod;
 
-final class Router implements RouterInterface
+class Router implements RouterInterface
 {
+    private const NOT_FOUND_CODE = 204;
     private array $routes = [];
 
-    public function dispatch(string $uri, array $params = []): void
+    public function dispatch(string $requestAction, array $params = []): void
     {
-        if (!key_exists($uri, $this->routes)) {
-            throw new InvalidArgumentException("'{$uri}' is an unregistered route", StatusCodeEnum::NOT_FOUND());
+        if (!key_exists($requestAction, $this->routes)) {
+            throw new InvalidArgumentException("'{$requestAction}' is an unregistered route", self::NOT_FOUND_CODE);
         }
 
-        $uriContent                = $this->routes[$uri];
+        $uriContent                = $this->routes[$requestAction];
         $reflectedControllerMethod = self::createReflectionMethod($uriContent);
+
         $reflectedControllerMethod->invokeArgs(new $uriContent['namespace'], $params);
     }
 
@@ -40,11 +38,7 @@ final class Router implements RouterInterface
         try {
             return new ReflectionMethod($uriContent['namespace'], $uriContent['method']);
         } catch (ReflectionException $exception) {
-            (new SlackNotification(
-                new GuzzleHTTPClient(),
-                $exception->getMessage(),
-                NotificationTypeEnum::ERROR()
-            ))->notify();
+            print $exception->getMessage();
         }
     }
 }
