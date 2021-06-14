@@ -6,12 +6,16 @@
     </a>
 </p>
 
-| SETUP  |
-|:------:|
-| Nginx  |
-| PHP8 |
-| Docker |
-
+<p align="center">
+  <table>
+    <thead><tr><th colspan="4">SETUP</th></tr></thead>
+    <tr>
+      <td>Nginx</td>
+      <td>PHP8</td>
+      <td>Docker</td>
+    </tr>
+  </table>
+</p>
 
 #### Start app
 - Build Docker containers
