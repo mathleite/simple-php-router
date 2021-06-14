@@ -2,6 +2,7 @@
 
 namespace App\Test\Route;
 
+use App\Greet\GreetController;
 use App\Route\Router;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
@@ -14,7 +15,7 @@ class RouterTest extends TestCase
         $notFoundCode      = 204;
 
         $route = new Router();
-        $route->registry('/user', \App\Greet\GreetController::class, 'index');
+        $route->registry('/greet', GreetController::class, 'index');
 
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage("'{$unregisteredRoute}' is an unregistered route");
